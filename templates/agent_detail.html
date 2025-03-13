@@ -1,11 +1,25 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+{% block content %}
+    <div class="agent-header">
+        <h1>{{ agent.name }}</h1>
+        <p class="agent-description">{{ agent.description }}</p>
+    </div>
+
+    <form class="prompt-form" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send →</button>
+    </form>
+
+    {% if error %}
+        <div class="error-message">{{ error }}</div>
+    {% endif %}
+
+    {% if form.is_bound %}
+        <div class="response-animation">
+            <h3>Response:</h3>
+            <div class="response-content">{{ last_response.response }}</div>
+        </div>
+    {% endif %}
+{% endblock %}
+

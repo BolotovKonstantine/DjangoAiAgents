@@ -1,11 +1,15 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Available AI Agents</h1>
+    <div class="agent-list">
+        {% for agent in agents %}
+            <a href="{% url 'agent_detail' agent.id %}">
+                <div class="agent-card">
+                    <h2>{{ agent.name }}</h2>
+                    <p>{{ agent.description }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+{% endblock %}

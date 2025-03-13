@@ -1,11 +1,60 @@
-<!DOCTYPE html>
-<html lang="en-US">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends "../base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <img src="{% static 'images/ai-icon.svg' %}" alt="AI Logo" class="auth-logo">
+            <h1>Welcome to AI Studio</h1>
+            <p>Please sign in to continue</p>
+        </div>
+
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            
+            {% if form.errors %}
+                <div class="auth-error">
+                    ❗ Invalid username or password
+                </div>
+            {% endif %}
+
+            <div class="input-group">
+                <label for="id_username">Username</label>
+                <input type="text" 
+                       name="username" 
+                       id="id_username" 
+                       placeholder="Enter your username"
+                       required>
+                <svg class="input-icon" viewBox="0 0 24 24">
+                    <path d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z"/>
+                </svg>
+            </div>
+
+            <div class="input-group">
+                <label for="id_password">Password</label>
+                <input type="password" 
+                       name="password" 
+                       id="id_password" 
+                       placeholder="Enter your password"
+                       required>
+                <svg class="input-icon" viewBox="0 0 24 24">
+                    <path d="M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z"/>
+                </svg>
+            </div>
+
+            <button type="submit" class="auth-button">
+                Sign In 
+                <svg class="button-icon" viewBox="0 0 24 24">
+                    <path d="M10,17L15,12L10,7V17Z"/>
+                </svg>
+            </button>
+
+            <div class="auth-links">
+                <a href="#">Forgot password?</a>
+                <a href="#">Create account</a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

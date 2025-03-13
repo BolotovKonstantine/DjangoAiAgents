@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
-from ai_agents import views
+from DjangoAiAgents import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
