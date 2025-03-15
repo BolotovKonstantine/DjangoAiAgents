@@ -5,6 +5,7 @@ class Agent(models.Model):
     name = models.CharField(max_length=100)
     api_url = models.URLField()
     api_key = models.CharField(max_length=255)
+    app_id = models.CharField(max_length=255)
     description = models.TextField()
 
     def __str__(self):
